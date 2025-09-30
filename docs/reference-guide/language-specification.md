@@ -104,7 +104,7 @@ Allows to group any amount of elements and attach comments to the groups or indi
 
 ### Timeline with lanes
 
-![EMN Timeline with lanes](../assets/img/emn-timeline.png) {align=left}
+![EMN Timeline with lanes](../assets/img/emn-timeline.png){align=left}
 
 ### Triggers
 
@@ -142,16 +142,17 @@ Allows to group any amount of elements and attach comments to the groups or indi
 1. A trigger can only be connected with a command
 2. A command can be connected to an event or an error
 3. An event can be connected to automation, translation or query
-4. A query can be connected to a view or external system
-5. An automation can be connected to a command
-6. A translation can be connected to event or external event
+4. An external event can be connected to translation only
+5. A query can be connected to a view or external system
+6. An automation can be connected to a command
+7. A translation can be connected to a command, an event or an external event
 
 ## EMN Document
 
 An EMN document is an XML document compliant to EMN XML Schema. This section describes the structure of the document and its elements.
 In general, the document is separated into several sections: models (types, timelines, specifications) and diagrams.
 
-### Definition
+### Definitions
 
 #### Purpose
 
@@ -196,7 +197,9 @@ It organizes and holds together all key parts of the model, similar to how BPMN 
 
 ##### Contained Elements
 
-The following 
+The following elements can be placed inside the `Definitions` element:
+
+![Definitions](../assets/img/emn_rootElements.drawio.png){align=left}
 
 | Element         | Purpose                                                    |
 |-----------------|------------------------------------------------------------|
@@ -224,7 +227,7 @@ By separating types from instances, EMN enables reuse, consistency, and clear se
 </types>
 ```
 
-##### Contained Elements
+##### Contained Elements 
 
 | Element           | Description                                      |
 |-------------------|--------------------------------------------------|
@@ -245,6 +248,10 @@ Each `flowElementType` describes a template that can be instantiated as `flowEle
 `flowElementType` is an abstract base type. Specific subtypes include `flowNodeType` and `messageFlowType`.
 The `flowNodeType` is an abstract type to represent the structural types (nodes). The `messageFlowType`
 represents dependencies between the nodes (edges).
+
+The following diagram expresses those relations:
+
+![Types](../assets/img/emn_flowNodes.drawio.png){align=left}
 
 ##### Attributes of `flowNodeType`
 
