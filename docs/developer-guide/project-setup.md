@@ -10,22 +10,15 @@ If you are interested in developing and building the project please follow the f
 To get sources of the project, please execute:
 
 ```bash
-git clone https://github.com/holixon/emn-moddle.git
-cd emn-moddle
+git clone https://github.com/holixon/emn.git
+cd emn
 ```
 
 We are using gitflow in our git SCM. That means that you should start from `develop` branch,
 create a `feature/<name>` out of it and once it is completed create a pull request containing
 it. Please squash your commits before submitting and use semantic commit messages, if possible.
 
-## Project Build
-
-Perform the following steps to get a development setup up and running.
-
-```bash
-./npm run all
-```
-### Build Documentation
+## Build Documentation
 
 We are using MkDocs for generation of a static site documentation and rely on Markdown as much as possible.
 MkDocs is written in Python 3 and needs to be installed on your machine. For the installation please run the following

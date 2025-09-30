@@ -7,22 +7,22 @@
 # ###############################
 
 site_name: Event Modeling Notation
-site_url: https://holixon/emn-moddle/
+site_url: https://holixon/emn/
 site_author: Holisticon AG
 site_description: >-
   Event Modeling Notation (EMN) is an XML-based language for modeling system behavior through events,
   commands, and user interactions. It captures event-driven flows in a structured, time-ordered format called a Timeline.
-  EMN introduces concepts like Slices and Concept Lanes to represent system responsibilities and interactions.
+  EMN introduces concepts like Slices and Lanes to represent system responsibilities and interactions.
   Diagrams are represented using the OMG Diagram Interchange (DI) standard for tool interoperability.
   The goal of EMN is to provide a formal, machine-readable format for event modeling, enabling clear
   communication between technical and business teams.
-copyright: Copyright &copy; 2024 - 2025, BPM Crafters
+copyright: Copyright &copy; 2024 - 2025, EMN Working Group
 
 use_directory_urls: false
 
 # Repository
-repo_name: holixon/emn-moddle
-repo_url: https://github.com/holixon/emn-moddle/
+repo_name: holixon/emn
+repo_url: https://github.com/holixon/emn/
 edit_uri: edit/develop/docs/
 
 markdown_extensions:
