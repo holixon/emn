@@ -836,13 +836,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#definition" class="md-nav__link">
+  <a href="#definitions" class="md-nav__link">
     <span class="md-ellipsis">
-      Definition
+      Definitions
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Definition">
+    <nav class="md-nav" aria-label="Definitions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1634,7 +1634,7 @@ slice, enriched with example values and specifying expected behaviour of the sys
 <p>Allows to group any amount of elements and attach comments to the groups or individual elements.</p>
 <h2 id="visualisation">Visualisation<a class="headerlink" href="#visualisation" title="Permanent link">#</a></h2>
 <h3 id="timeline-with-lanes">Timeline with lanes<a class="headerlink" href="#timeline-with-lanes" title="Permanent link">#</a></h3>
-<p><img alt="EMN Timeline with lanes" src="../assets/img/emn-timeline.png" /> {align=left}</p>
+<p><img align="left" alt="EMN Timeline with lanes" src="../assets/img/emn-timeline.png" /></p>
 <h3 id="triggers">Triggers<a class="headerlink" href="#triggers" title="Permanent link">#</a></h3>
 <p><img align="left," alt="EMN Triggers" src="../assets/img/emn-triggers.png" width="50%" /></p>
 <h3 id="interaction-messages">Interaction messages<a class="headerlink" href="#interaction-messages" title="Permanent link">#</a></h3>
@@ -1659,14 +1659,15 @@ slice, enriched with example values and specifying expected behaviour of the sys
 <li>A trigger can only be connected with a command</li>
 <li>A command can be connected to an event or an error</li>
 <li>An event can be connected to automation, translation or query</li>
+<li>An external event can be connected to translation only</li>
 <li>A query can be connected to a view or external system</li>
 <li>An automation can be connected to a command</li>
-<li>A translation can be connected to event or external event</li>
+<li>A translation can be connected to a command, an event or an external event</li>
 </ol>
 <h2 id="emn-document">EMN Document<a class="headerlink" href="#emn-document" title="Permanent link">#</a></h2>
 <p>An EMN document is an XML document compliant to EMN XML Schema. This section describes the structure of the document and its elements.
 In general, the document is separated into several sections: models (types, timelines, specifications) and diagrams.</p>
-<h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">#</a></h3>
+<h3 id="definitions">Definitions<a class="headerlink" href="#definitions" title="Permanent link">#</a></h3>
 <h4 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">#</a></h4>
 <p>The definitions element is the root container of an EMN model file.
 It organizes and holds together all key parts of the model, similar to how BPMN or DMN use definitions.</p>
@@ -1715,7 +1716,8 @@ It organizes and holds together all key parts of the model, similar to how BPMN 
 </tbody>
 </table>
 <h5 id="contained-elements">Contained Elements<a class="headerlink" href="#contained-elements" title="Permanent link">#</a></h5>
-<p>The following </p>
+<p>The following elements can be placed inside the <code>Definitions</code> element:</p>
+<p><img align="left" alt="Definitions" src="../assets/img/emn_rootElements.drawio.png" /></p>
 <table>
 <thead>
 <tr>
@@ -1800,6 +1802,8 @@ By separating types from instances, EMN enables reuse, consistency, and clear se
 <p><code>flowElementType</code> is an abstract base type. Specific subtypes include <code>flowNodeType</code> and <code>messageFlowType</code>.
 The <code>flowNodeType</code> is an abstract type to represent the structural types (nodes). The <code>messageFlowType</code>
 represents dependencies between the nodes (edges).</p>
+<p>The following diagram expresses those relations:</p>
+<p><img align="left" alt="Types" src="../assets/img/emn_flowNodes.drawio.png" /></p>
 <h5 id="attributes-of-flownodetype">Attributes of <code>flowNodeType</code><a class="headerlink" href="#attributes-of-flownodetype" title="Permanent link">#</a></h5>
 <table>
 <thead>
@@ -2603,7 +2607,7 @@ an abstract type with three subtypes: <code>given</code>, <code>when</code> and 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 30, 2025 08:25:06 UTC">September 30, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 30, 2025 11:58:11 UTC">September 30, 2025</span>
   </span>
 
     

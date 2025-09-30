@@ -819,33 +819,36 @@ and results in one or more <strong>Events</strong>.</p>
 <ul>
 <li>Use this to describe how business actions begin and what state changes they cause.</li>
 <li>Start with naming the boxes meaningfully, then refine them with relevant parameters.</li>
-<li>Example: <em>User clicks “Place Order” → “PlaceOrder” Command → “OrderPlaced” Event</em></li>
+<li>Example: <em>User clicks “Place Order” on a “Checkout screen” → “Place Order” Command → “Order Placed” Event</em></li>
 </ul>
 <h2 id="view-pattern">View Pattern<a class="headerlink" href="#view-pattern" title="Permanent link">#</a></h2>
 <p><strong>Event(s) → Query → View</strong></p>
+<p><img align="left," alt="View" src="../assets/img/pattern-view.png" width="50%" /></p>
 <p>This pattern defines how system state is <strong>read</strong>. A <strong>View</strong> derives its data from one or more <strong>Events</strong> using a <strong>Query</strong>.</p>
 <ul>
 <li>Use this to show what information the system makes available for display or decision-making.</li>
 <li>A View can only use already existing events — missing data will become obvious quickly.</li>
-<li>Example: <em>“OrderPlaced” + “PaymentReceived” Events → “Order Payment” Query → “Order Status” View</em></li>
+<li>Example: <em>“Order Placed” + “Payment Received” Events → “Order Payment” Query → “Order Status” View</em></li>
 </ul>
 <h2 id="automation-pattern">Automation Pattern<a class="headerlink" href="#automation-pattern" title="Permanent link">#</a></h2>
 <p><strong>Event(s) → Automated Trigger → Command → Event(s)</strong></p>
+<p><img align="left," alt="Automation" src="../assets/img/pattern-automation.png" width="40%" /></p>
 <p>This pattern models <strong>automated workflows</strong> where the system observes data and reacts without user intervention.</p>
 <ul>
 <li>Treat the <strong>Automated Trigger</strong> like a robot reading a <strong>todo list</strong>.</li>
 <li>When a condition is met, it issues a <strong>Command</strong>, resulting in new <strong>Events</strong>.</li>
 <li>There is <strong>no business logic</strong> in the automation — only observation and action.</li>
-<li>Example: <em>“OrderPlaced” Event → Auto-Trigger → “SendConfirmationEmail” Command → “ConfirmationSent” Event</em></li>
+<li>Example: <em>“Order Placed” Event → “Confirmation Notification” → “Send Confirmation Email” Command → “Confirmation Sent” Event</em></li>
 </ul>
 <h2 id="translation-pattern">Translation Pattern<a class="headerlink" href="#translation-pattern" title="Permanent link">#</a></h2>
-<p><strong>Event(s) (source system) → View → Automated Trigger → Command → Event(s) (target system)</strong></p>
+<p><strong>Event(s) (source system) → Automated Trigger → Command → Event(s) (target system)</strong></p>
+<p><img align="left," alt="Translation" src="../assets/img/pattern-translation.png" width="40%" /></p>
 <p>Use this when transferring knowledge or state between <strong>different systems</strong>.</p>
 <ul>
 <li>The structure is the same as the Automation Pattern.</li>
 <li>The <strong>read side</strong> must be limited to a single source system.</li>
 <li>The <strong>write side</strong> can publish to multiple systems using mechanisms like Pub/Sub.</li>
-<li>Example: <em>“InvoiceCreated” Event from System A → View → Auto-Trigger → “SyncInvoice” Command → “InvoiceSynced” Event in System B</em></li>
+<li>Example: <em>“Invoice Processed” Event from System A → Invoice Synchronizer → “Mark Invoice Processed” Command → “Invoice Processed” Event in System B</em></li>
 </ul>
 
 
@@ -867,7 +870,7 @@ and results in one or more <strong>Events</strong>.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 30, 2025 08:25:06 UTC">September 30, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 30, 2025 11:58:11 UTC">September 30, 2025</span>
   </span>
 
     
