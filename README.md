@@ -1,2 +1,0 @@
-# emn
-Event Modeling Notation
