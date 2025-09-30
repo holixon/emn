@@ -38,13 +38,16 @@
    --accent-error-10: #f2e0e6;
    --accent-1-100: #6bdce0;
    --accent-3-100: #830289;
-   --accent-4-100: #016db3;
+   --accent-4-100: #213844;
    --pumpkin-orange: #fb7b00;
+   --scarlet: #FE3C00;
+   --scarlet-light: #F4F0E5;
    --royal: #0d0f7e;
 
 
+   --md-default-bg-color: var(--scarlet-light);
    --md-primary-fg-color: var(--accent-4-100);
-   --md-accent-fg-color: var(--pumpkin-orange);
+   --md-accent-fg-color: var(--scarlet);
    --md-footer-bg-color: var(--accent-4-100);
 }
 
