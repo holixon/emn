@@ -1,0 +1,2685 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Event Modeling Notation (EMN) is an XML-based language for modeling system behavior through events, commands, and user interactions. It captures event-driven flows in a structured, time-ordered format called a Timeline. EMN introduces concepts like Slices and Concept Lanes to represent system responsibilities and interactions. Diagrams are represented using the OMG Diagram Interchange (DI) standard for tool interoperability. The goal of EMN is to provide a formal, machine-readable format for event modeling, enabling clear communication between technical and business teams.">
+      
+      
+        <meta name="author" content="Holisticon AG">
+      
+      
+        <link rel="canonical" href="https://holixon/emn-moddle/snapshot/reference-guide/language-specification.html">
+      
+      
+        <link rel="prev" href="index.html">
+      
+      
+        <link rel="next" href="patterns.html">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Language Specification - Event Modeling Notation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Event Modeling Notation" class="md-header__button md-logo" aria-label="Event Modeling Notation" data-md-component="logo">
+      
+  <img src="../assets/img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Event Modeling Notation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Language Specification
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/holixon/emn-moddle/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    holixon/emn-moddle
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../introduction/index.html" class="md-tabs__link">
+          
+  
+  
+  Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="index.html" class="md-tabs__link">
+          
+  
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../developer-guide/contribution.html" class="md-tabs__link">
+          
+  
+  
+  Developers
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Event Modeling Notation" class="md-nav__button md-logo" aria-label="Event Modeling Notation" data-md-component="logo">
+      
+  <img src="../assets/img/logo.png" alt="logo">
+
+    </a>
+    Event Modeling Notation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/holixon/emn-moddle/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    holixon/emn-moddle
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Introduction
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Motivation and Goal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/usage-and-tools.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usage and Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/resources.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Language-Specification
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="language-specification.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Language-Specification
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    <span class="md-ellipsis">
+      General
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emn-modeling-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      EMN Modeling Elements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emn-triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      EMN Triggers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emn-interaction-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      EMN Interaction Messages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emn-events-and-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      EMN Events and Errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emn-message-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      EMN Message flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emn-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      EMN Timeline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emn-lane" class="md-nav__link">
+    <span class="md-ellipsis">
+      EMN Lane
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emn-slice" class="md-nav__link">
+    <span class="md-ellipsis">
+      EMN Slice
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emn-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      EMN Specification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emn-group-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      EMN Group / Annotation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualisation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Visualisation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#timeline-with-lanes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Timeline with lanes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Triggers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interaction-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interaction messages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-and-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Events and Errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Slices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-flow-and-messages-with-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Message flow and Messages with values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specification
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#containment-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Containment rules
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connection-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connection rules
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#emn-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      EMN Document
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EMN Document">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Definition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#role" class="md-nav__link">
+    <span class="md-ellipsis">
+      Role
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semantics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Semantics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Attributes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contained-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contained Elements
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semantics_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Semantics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structure_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contained-elements_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contained Elements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes-of-flowelementtype" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes of flowElementType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-hierarchy-of-flowelementtype" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type Hierarchy of flowElementType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes-of-flownodetype" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes of flowNodeType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes-of-messageflowtype" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes of messageFlowType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concrete-flownodetype" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concrete flowNodeType
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schemas-and-payload-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schemas and Payload Definitions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Timeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Timeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semantics_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Semantics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structure_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#attributes-of-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes of timeline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contained-elements_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contained Elements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes-of-flowelement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes of flowElement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contained-elements-of-flowelement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contained elements of flowElement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-hierarchy-of-flowelement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type Hierarchy of flowElement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes-of-flownode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes of flowNode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes-of-messageflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes of messageFlow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concrete-flownode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concrete flowNode
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#value-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Value Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lanes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lanes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lanes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#types-of-lanes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of Lanes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#purpose_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semantics_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Semantics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structure_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contained-elements_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contained elements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes-of-lane" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes of Lane
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregate-type-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aggregate Type Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slices_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Slices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Slices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structure_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semantics_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Semantics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes-of-slice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes of slice
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specifications
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Specifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structure_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semantics_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Semantics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes-of-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes of specification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributes-of-given-stage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes of given stage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contained-elements-of-stage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contained Elements of stage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Developers
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Developers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developer-guide/contribution.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contribution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developer-guide/project-setup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Project Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Language-Specification</h1>
+
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">#</a></h2>
+<h3 id="general">General<a class="headerlink" href="#general" title="Permanent link">#</a></h3>
+<p>Event modeling a popular collaborative method for requirement engineering and solution development of event-driven systems. Developed by Adam Dymitruk in 2018,
+it describes an iterative format of modeling and enrichment of a visual diagram, to refine system behaviour. More details on Event modeling is available at
+<a href="https://eventmodeling.org">https://eventmodeling.org</a>.</p>
+<p>The main diagram of Event Modeling is a timeline, showing the flow of different messages through the system and ordering them into a casual and temporal flow.
+Event
+modeling focus on the method description (the seven steps) but does not provide any formal details for the semantic meaning and exact syntax of the used
+elements.</p>
+<p><strong>Event modeling notation</strong> or <strong>EMN</strong> for short introduces a language specification for Event Modeling. This specification aims to fill this gap and provide
+both:
+the exact specification of the elements including their semantics and visualisation and a syntax for storage
+of the required information.</p>
+<h3 id="emn-modeling-elements">EMN Modeling Elements<a class="headerlink" href="#emn-modeling-elements" title="Permanent link">#</a></h3>
+<p>The EMN Elements are separated into several groups.</p>
+<p>The dynamic elements are:</p>
+<ul>
+<li>Triggers</li>
+<li>Interaction messages</li>
+<li>Events</li>
+<li>Flows</li>
+</ul>
+<p>The static / grouping elements are:</p>
+<ul>
+<li>Timelines</li>
+<li>Slices</li>
+<li>Lanes</li>
+<li>Groups / Annotations</li>
+<li>Specifications</li>
+</ul>
+<h3 id="emn-triggers">EMN Triggers<a class="headerlink" href="#emn-triggers" title="Permanent link">#</a></h3>
+<p>Triggers are used to denote the sources for the <strong>intent of change</strong>. Currently, the following triggers are supported:</p>
+<ul>
+<li><strong>View</strong>: represents a UI which can be used by the user to interact with the system and trigger a change</li>
+<li><strong>External System</strong>: represents a system, causing a change by invoking an API (directly)</li>
+<li><strong>Automation</strong>: part of the system implementing a policy expressing a transition from internal state change to an action (e.g. Saga Pattern, Workflow)</li>
+<li><strong>Translation</strong>: part of the system implementing a mapping from internal to external event (aka. Anti Corruption Layer)</li>
+</ul>
+<p>Triggers can be placed in one or multiple <strong>trigger lanes</strong> in order to express their responsibility, grouping etc...</p>
+<h3 id="emn-interaction-messages">EMN Interaction Messages<a class="headerlink" href="#emn-interaction-messages" title="Permanent link">#</a></h3>
+<p>EMN is primarily designed for design of CQRS systems (but stil can be applied to other system architectures, if desired), end foster clear segregation
+of commands and queries. These two message types are modelled explicitly:</p>
+<ul>
+<li><strong>Command</strong>: represents an intent for system state change / modification</li>
+<li><strong>Query</strong>: represents a request/response for data retrieval</li>
+</ul>
+<h3 id="emn-events-and-errors">EMN Events and Errors<a class="headerlink" href="#emn-events-and-errors" title="Permanent link">#</a></h3>
+<p><strong>Events</strong> are messages produced by system components representing state changes. They can be used for Event Sourcing (if used in CQRS/ES architecture)
+or just be handled for event-based state transfer. The latter case can be implemented using <strong>External Events</strong>, originated by an external system.</p>
+<p><strong>Errors</strong> are specific form of events denoting the fact that the intended state change was rejected.</p>
+<h3 id="emn-message-flow">EMN Message flow<a class="headerlink" href="#emn-message-flow" title="Permanent link">#</a></h3>
+<p>A message flow denotes a connection between two dynamic elements of EMN, meaning "causes". For example, a command dispatching causes a state change which is
+causing emitting of an event. In this case, a command is connected to an event.</p>
+<h3 id="emn-timeline">EMN Timeline<a class="headerlink" href="#emn-timeline" title="Permanent link">#</a></h3>
+<p>A <strong>timeline</strong> is a visual representation of a particular journey consisting of triggers, messages and events connected together. A timeline has a temporal
+direction
+(time goes from left to right, all message flows should point from the past to the future). It might be separated into <strong>lanes</strong>, depending on the completeness
+and
+progress of the event modeling.</p>
+<h3 id="emn-lane">EMN Lane<a class="headerlink" href="#emn-lane" title="Permanent link">#</a></h3>
+<p>There are three types of lanes:</p>
+<p><strong>Trigger lane</strong>: a lane reserved for triggers. Multiple trigger lanes can be used to distinguish the role of the actor, using the trigger.
+<strong>Interaction lane</strong>: used to place interaction command: <strong>commands</strong> and <strong>queries</strong>.
+<strong>Concept / Aggregate Lane</strong>: a lane holding the <strong>event</strong> messages, denoting the responsibility of command handling and state change.</p>
+<h3 id="emn-slice">EMN Slice<a class="headerlink" href="#emn-slice" title="Permanent link">#</a></h3>
+<p>A <strong>slice</strong> is a user-made grouping of elements for different purposes. A slice can be named and represent a unit of implementation or a bounded piece
+of behaviour.</p>
+<h3 id="emn-specification">EMN Specification<a class="headerlink" href="#emn-specification" title="Permanent link">#</a></h3>
+<p>A <strong>specification</strong> is a behaviour specification by example (often written in <code>Given</code>/<code>When</code>/<code>Then</code> form) including references to messages from the timeline or
+slice, enriched with example values and specifying expected behaviour of the system.</p>
+<h3 id="emn-group-annotation">EMN Group / Annotation<a class="headerlink" href="#emn-group-annotation" title="Permanent link">#</a></h3>
+<p>Allows to group any amount of elements and attach comments to the groups or individual elements.</p>
+<h2 id="visualisation">Visualisation<a class="headerlink" href="#visualisation" title="Permanent link">#</a></h2>
+<h3 id="timeline-with-lanes">Timeline with lanes<a class="headerlink" href="#timeline-with-lanes" title="Permanent link">#</a></h3>
+<p><img alt="EMN Timeline with lanes" src="../assets/img/emn-timeline.png" /> {align=left}</p>
+<h3 id="triggers">Triggers<a class="headerlink" href="#triggers" title="Permanent link">#</a></h3>
+<p><img align="left," alt="EMN Triggers" src="../assets/img/emn-triggers.png" width="50%" /></p>
+<h3 id="interaction-messages">Interaction messages<a class="headerlink" href="#interaction-messages" title="Permanent link">#</a></h3>
+<p><img align="left," alt="EMN Interaction Messages" src="../assets/img/emn-interaction-messages.png" width="26%" /></p>
+<h3 id="events-and-errors">Events and Errors<a class="headerlink" href="#events-and-errors" title="Permanent link">#</a></h3>
+<p><img align="left," alt="EMN Events and Errors" src="../assets/img/emn-events.png" width="40%" /></p>
+<h3 id="slices">Slices<a class="headerlink" href="#slices" title="Permanent link">#</a></h3>
+<p><img align="left," alt="EMN Slice" src="../assets/img/emn-slice.png" width="35%" /></p>
+<h3 id="message-flow-and-messages-with-values">Message flow and Messages with values<a class="headerlink" href="#message-flow-and-messages-with-values" title="Permanent link">#</a></h3>
+<p><img align="left," alt="EMN Message with Value" src="../assets/img/emn-message-with-value.png" width="27%" /></p>
+<h3 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">#</a></h3>
+<p><img alt="EMN Specifications" src="../assets/img/emn-specifications.png" /></p>
+<h2 id="containment-rules">Containment rules<a class="headerlink" href="#containment-rules" title="Permanent link">#</a></h2>
+<ol>
+<li>Trigger elements (View, Automation, Translation, External System) can only be placed into trigger lanes.</li>
+<li>Commands can only either be placed into interaction lane or into when stage of the specification.</li>
+<li>Queries can only be placed into interaction lane.</li>
+<li>Events and events can only either be placed into concept / aggregate lane or in given and then stages of the specification.</li>
+</ol>
+<h2 id="connection-rules">Connection rules<a class="headerlink" href="#connection-rules" title="Permanent link">#</a></h2>
+<ol>
+<li>A trigger can only be connected with a command</li>
+<li>A command can be connected to an event or an error</li>
+<li>An event can be connected to automation, translation or query</li>
+<li>A query can be connected to a view or external system</li>
+<li>An automation can be connected to a command</li>
+<li>A translation can be connected to event or external event</li>
+</ol>
+<h2 id="emn-document">EMN Document<a class="headerlink" href="#emn-document" title="Permanent link">#</a></h2>
+<p>An EMN document is an XML document compliant to EMN XML Schema. This section describes the structure of the document and its elements.
+In general, the document is separated into several sections: models (types, timelines, specifications) and diagrams.</p>
+<h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">#</a></h3>
+<h4 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">#</a></h4>
+<p>The definitions element is the root container of an EMN model file.
+It organizes and holds together all key parts of the model, similar to how BPMN or DMN use definitions.</p>
+<h4 id="role">Role<a class="headerlink" href="#role" title="Permanent link">#</a></h4>
+<ul>
+<li>Serves as the entry point for an EMN document.</li>
+<li>Aggregates types, timelines, categories, and specifications.</li>
+<li>Enables modular extension and reuse across tools and teams.</li>
+</ul>
+<h4 id="semantics">Semantics<a class="headerlink" href="#semantics" title="Permanent link">#</a></h4>
+<ul>
+<li>Think of definitions as the EMN file boundary.</li>
+<li>All elements inside definitions share the same namespace, context, and model lifecycle.</li>
+<li>Supports interchange between tools, including visualization and code generation.</li>
+</ul>
+<h4 id="structure">Structure<a class="headerlink" href="#structure" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;definitions</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;myModel&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Order System Model&quot;</span>
+<span class="w">             </span><span class="na">xmlns=</span><span class="s">&quot;https://holixon.io/spec/EMN/20241231/MODEL&quot;</span>
+<span class="w">             </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+<span class="w">             </span><span class="na">xsi:schemaLocation=</span><span class="s">&quot;https://holixon.io/spec/EMN/20241231/MODEL emn.xsd&quot;</span><span class="nt">&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;types&gt;</span>...<span class="nt">&lt;/types&gt;</span>
+<span class="w">  </span><span class="nt">&lt;timeline&gt;</span>...<span class="nt">&lt;/timeline&gt;</span>
+<span class="w">  </span><span class="nt">&lt;category&gt;</span>...<span class="nt">&lt;/category&gt;</span>
+<span class="w">  </span><span class="nt">&lt;specification&gt;</span>...<span class="nt">&lt;/specification&gt;</span>
+
+<span class="nt">&lt;/definitions&gt;</span>
+</code></pre></div>
+<h5 id="key-attributes">Key Attributes<a class="headerlink" href="#key-attributes" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>Unique identifier of the model.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>Human-readable name (optional).</td>
+</tr>
+</tbody>
+</table>
+<h5 id="contained-elements">Contained Elements<a class="headerlink" href="#contained-elements" title="Permanent link">#</a></h5>
+<p>The following </p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>types</code></td>
+<td>Defines reusable flow element types.</td>
+</tr>
+<tr>
+<td><code>timeline</code></td>
+<td>Describes the event flow over time (optional, multiple).</td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td>Organizes elements into meaningful categories.</td>
+</tr>
+<tr>
+<td><code>specification</code></td>
+<td>Describes a Given-When-Then scenario (optional, multiple).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="types">Types<a class="headerlink" href="#types" title="Permanent link">#</a></h3>
+<h4 id="purpose_1">Purpose<a class="headerlink" href="#purpose_1" title="Permanent link">#</a></h4>
+<p>The Types Section in EMN defines the reusable element types that describe the possible building blocks of a system model.
+These types act as templates for commands, events, queries, views, and other flow elements.
+By separating types from instances, EMN enables reuse, consistency, and clear semantics across multiple timelines, slices, or scenarios.</p>
+<h4 id="semantics_1">Semantics<a class="headerlink" href="#semantics_1" title="Permanent link">#</a></h4>
+<h4 id="structure_1">Structure<a class="headerlink" href="#structure_1" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;types&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- Contains type definitions --&gt;</span>
+<span class="nt">&lt;/types&gt;</span>
+</code></pre></div>
+<h5 id="contained-elements_1">Contained Elements<a class="headerlink" href="#contained-elements_1" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flowElementType</code></td>
+<td>Defines a reusable flow element type (abstract).</td>
+</tr>
+</tbody>
+</table>
+<p>Each <code>flowElementType</code> describes a template that can be instantiated as <code>flowElement</code> in timelines or slices.</p>
+<h5 id="attributes-of-flowelementtype">Attributes of <code>flowElementType</code><a class="headerlink" href="#attributes-of-flowelementtype" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>xsd:ID</code></td>
+<td>Unique identifier of the type.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>xsd:string</code></td>
+<td>Human-readable name.</td>
+</tr>
+<tr>
+<td><code>categoryRef</code></td>
+<td><code>xsd:QName</code></td>
+<td>Optional categorization for filtering.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="type-hierarchy-of-flowelementtype">Type Hierarchy of <code>flowElementType</code><a class="headerlink" href="#type-hierarchy-of-flowelementtype" title="Permanent link">#</a></h5>
+<p><code>flowElementType</code> is an abstract base type. Specific subtypes include <code>flowNodeType</code> and <code>messageFlowType</code>.
+The <code>flowNodeType</code> is an abstract type to represent the structural types (nodes). The <code>messageFlowType</code>
+represents dependencies between the nodes (edges).</p>
+<h5 id="attributes-of-flownodetype">Attributes of <code>flowNodeType</code><a class="headerlink" href="#attributes-of-flownodetype" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>incoming</code></td>
+<td><code>xsd:QName</code></td>
+<td>Array of incoming connections (<code>messageFlowType</code>), might be empty.</td>
+</tr>
+<tr>
+<td><code>outgoing</code></td>
+<td><code>xsd:QName</code></td>
+<td>Array of outgoing connections (<code>messageFlowType</code>), might be empty.</td>
+</tr>
+<tr>
+<td><code>schema</code></td>
+<td><code>emn:Schema</code></td>
+<td>Optional schema element.</td>
+</tr>
+</tbody>
+</table>
+<p>As you see above one node may have multiple incoming and multiple outgoing message flow types attached to it.</p>
+<h5 id="attributes-of-messageflowtype">Attributes of <code>messageFlowType</code><a class="headerlink" href="#attributes-of-messageflowtype" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sourceRef</code></td>
+<td><code>xsd:IDREF</code></td>
+<td>ID of the source type (<code>flowNodeType</code>).</td>
+</tr>
+<tr>
+<td><code>targetRef</code></td>
+<td><code>xsd:IDREF</code></td>
+<td>ID of the target type (<code>flowNodeType</code>).</td>
+</tr>
+</tbody>
+</table>
+<h5 id="concrete-flownodetype">Concrete <code>flowNodeType</code><a class="headerlink" href="#concrete-flownodetype" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>Subtype</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>automationType</code></td>
+<td>Describes automated system reactions.</td>
+</tr>
+<tr>
+<td><code>commandType</code></td>
+<td>Describes commands that trigger changes.</td>
+</tr>
+<tr>
+<td><code>errorType</code></td>
+<td>Describes errors or exceptions.</td>
+</tr>
+<tr>
+<td><code>eventType</code></td>
+<td>Describes domain events.</td>
+</tr>
+<tr>
+<td><code>externalSystemType</code></td>
+<td>Represents external system interactions.</td>
+</tr>
+<tr>
+<td><code>externalEventType</code></td>
+<td>Represents events from outside the system.</td>
+</tr>
+<tr>
+<td><code>queryType</code></td>
+<td>Describes query results / projections.</td>
+</tr>
+<tr>
+<td><code>translationType</code></td>
+<td>Describes message translation or mapping logic.</td>
+</tr>
+<tr>
+<td><code>viewType</code></td>
+<td>Describes a view to originate command from.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;types</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;https://holixon.io/spec/EMN/20241231/MODEL&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;viewType</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;view24&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;outgoing&gt;</span>v2c_createCustomer<span class="nt">&lt;/outgoing&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/viewType&gt;</span>
+<span class="w">  </span><span class="nt">&lt;commandType</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;createCustomer&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;incoming&gt;</span>v2c_createCustomer_1<span class="nt">&lt;/incoming&gt;</span>
+<span class="w">    </span><span class="nt">&lt;outgoing&gt;</span>c2e_createCustomer_1<span class="nt">&lt;/outgoing&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/commandType&gt;</span>
+<span class="w">  </span><span class="nt">&lt;eventType</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;customerCreated&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;incoming&gt;</span>c2e_createCustomer_1<span class="nt">&lt;/incoming&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/eventType&gt;</span>
+<span class="w">  </span><span class="nt">&lt;messageFlowType</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;v2c_createCustomer&quot;</span>
+<span class="w">                   </span><span class="na">sourceRef=</span><span class="s">&quot;view24&quot;</span><span class="w"> </span><span class="na">targetRef=</span><span class="s">&quot;createCustomer&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;messageFlowType</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;c2e_createCustomer&quot;</span>
+<span class="w">                   </span><span class="na">sourceRef=</span><span class="s">&quot;createCustomer&quot;</span><span class="w"> </span><span class="na">targetRef=</span><span class="s">&quot;customerCreated&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/types&gt;</span>
+</code></pre></div>
+<h4 id="schemas-and-payload-definitions">Schemas and Payload Definitions<a class="headerlink" href="#schemas-and-payload-definitions" title="Permanent link">#</a></h4>
+<p>Each <code>flowElementType</code> may optionally reference a schema describing the message or event structure.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>schemaFormat</code></td>
+<td><code>xsd:string</code></td>
+<td>MIME type (e.g., application/schema+json)</td>
+</tr>
+<tr>
+<td><code>resource</code></td>
+<td><code>xsd:string</code></td>
+<td>Optional path or URL to the schema. If omitted, the <code>schema</code> must contain definition as body.</td>
+</tr>
+</tbody>
+</table>
+<p>Example of external schema:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;commandType</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;CreateOrderCommand&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Create Order&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;schema</span><span class="w"> </span><span class="na">resource=</span><span class="s">&quot;schemas/CreateOrder.json&quot;</span><span class="w"> </span><span class="na">schemaFormat=</span><span class="s">&quot;application/schema+json&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/commandType&gt;</span>
+</code></pre></div>
+<p>Example of embedded schema:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;commandType</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;CreateOrderCommand&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Create Order&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;schema</span><span class="w"> </span><span class="na">schemaFormat=</span><span class="s">&quot;application/schema+json&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">    {</span>
+<span class="cp">      &quot;type&quot;: &quot;object&quot;,</span>
+<span class="cp">      &quot;properties&quot;: {</span>
+<span class="cp">        &quot;orderId&quot;: { &quot;type&quot;: &quot;string&quot; },</span>
+<span class="cp">        &quot;customerId&quot;: { &quot;type&quot;: &quot;string&quot; },</span>
+<span class="cp">        &quot;items&quot;: {</span>
+<span class="cp">          &quot;type&quot;: &quot;array&quot;,</span>
+<span class="cp">          &quot;items&quot;: {</span>
+<span class="cp">            &quot;type&quot;: &quot;object&quot;,</span>
+<span class="cp">            &quot;properties&quot;: {</span>
+<span class="cp">              &quot;sku&quot;: { &quot;type&quot;: &quot;string&quot; },</span>
+<span class="cp">              &quot;quantity&quot;: { &quot;type&quot;: &quot;integer&quot; }</span>
+<span class="cp">            },</span>
+<span class="cp">            &quot;required&quot;: [&quot;sku&quot;, &quot;quantity&quot;]</span>
+<span class="cp">          }</span>
+<span class="cp">        }</span>
+<span class="cp">      },</span>
+<span class="cp">      &quot;required&quot;: [&quot;orderId&quot;, &quot;customerId&quot;, &quot;items&quot;]</span>
+<span class="cp">    }</span>
+<span class="cp">  ]]&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/schema&gt;</span>
+<span class="nt">&lt;/commandType&gt;</span>
+</code></pre></div>
+<h3 id="timeline">Timeline<a class="headerlink" href="#timeline" title="Permanent link">#</a></h3>
+<h4 id="purpose_2">Purpose<a class="headerlink" href="#purpose_2" title="Permanent link">#</a></h4>
+<p>The <strong>Timeline Section</strong> defines the <strong>temporal order</strong> of events, commands, queries, and other flow elements.<br />
+It represents the <strong>system narrative</strong> as a sequence of actions and outcomes, forming the backbone of event modeling.</p>
+<h4 id="semantics_2">Semantics<a class="headerlink" href="#semantics_2" title="Permanent link">#</a></h4>
+<p>The timeline defines the chronological sequence of flow elements.</p>
+<ul>
+<li>Elements placed on the timeline express when things occur relative to each other (total or partial order).</li>
+<li>The timeline is the canonical temporal model; other constructs (e.g., slices) are semantic projections over it.</li>
+<li>Temporal ordering captures observable system evolution (what happened and in which order), distinct from ownership or responsibility.</li>
+<li>Tools may use timeline positions for layout, simulation, and validation (e.g., ensure no temporal contradictions).</li>
+</ul>
+<h4 id="structure_2">Structure<a class="headerlink" href="#structure_2" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;timeline&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- Contains flow elements, lane sets and slice sets --&gt;</span>
+<span class="nt">&lt;/timeline&gt;</span>
+</code></pre></div>
+<h5 id="attributes-of-timeline">Attributes of <code>timeline</code><a class="headerlink" href="#attributes-of-timeline" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>xsd:ID</code></td>
+<td>Unique identifier of the timeline.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>xsd:string</code></td>
+<td>Name of the timeline.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="contained-elements_2">Contained Elements<a class="headerlink" href="#contained-elements_2" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flowElement</code></td>
+<td>Instances of <code>flowElementType</code>, positioned in sequence (abstract).</td>
+</tr>
+<tr>
+<td><code>laneSet</code></td>
+<td>An optional <code>laneSet</code>, to define different lanes.</td>
+</tr>
+<tr>
+<td><code>sliceSet</code></td>
+<td>An optional <code>sliceSet</code>, to define different slices.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="attributes-of-flowelement">Attributes of <code>flowElement</code><a class="headerlink" href="#attributes-of-flowelement" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>xsd:ID</code></td>
+<td>Unique identifier of the element.</td>
+</tr>
+<tr>
+<td><code>typeRef</code></td>
+<td><code>xsd:IDREF</code></td>
+<td>Reference to the type of the element.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="contained-elements-of-flowelement">Contained elements of <code>flowElement</code><a class="headerlink" href="#contained-elements-of-flowelement" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>categoryValueRef</code></td>
+<td>Optional sequence of category values.</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>Optional value specifying this instance.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="type-hierarchy-of-flowelement">Type Hierarchy of <code>flowElement</code><a class="headerlink" href="#type-hierarchy-of-flowelement" title="Permanent link">#</a></h5>
+<p><code>flowElement</code> is an abstract element. Specific subtypes include <code>flowNode</code> and <code>messageFlow</code>.
+The <code>flowNode</code> is an abstract element to represent the structural elements (nodes). The <code>messageFlow</code>
+represents dependencies between the nodes (edges).</p>
+<h5 id="attributes-of-flownode">Attributes of <code>flowNode</code><a class="headerlink" href="#attributes-of-flownode" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>incoming</code></td>
+<td><code>xsd:QName</code></td>
+<td>Array of incoming connections (<code>messageFlow</code>), might be empty.</td>
+</tr>
+<tr>
+<td><code>outgoing</code></td>
+<td><code>xsd:QName</code></td>
+<td>Array of outgoing connections (<code>messageFlow</code>), might be empty.</td>
+</tr>
+</tbody>
+</table>
+<p>As you see above one node may have multiple incoming and multiple outgoing message flows attached to it.</p>
+<h5 id="attributes-of-messageflow">Attributes of <code>messageFlow</code><a class="headerlink" href="#attributes-of-messageflow" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sourceRef</code></td>
+<td><code>xsd:IDREF</code></td>
+<td>ID of the source (<code>flowNode</code>).</td>
+</tr>
+<tr>
+<td><code>targetRef</code></td>
+<td><code>xsd:IDREF</code></td>
+<td>ID of the target (<code>flowNode</code>).</td>
+</tr>
+</tbody>
+</table>
+<h5 id="concrete-flownode">Concrete <code>flowNode</code><a class="headerlink" href="#concrete-flownode" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>Subtype</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>automation</code></td>
+<td>Describes automated system reactions.</td>
+</tr>
+<tr>
+<td><code>command</code></td>
+<td>Describes commands that trigger changes.</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td>Describes errors or exceptions.</td>
+</tr>
+<tr>
+<td><code>event</code></td>
+<td>Describes domain events.</td>
+</tr>
+<tr>
+<td><code>externalSystem</code></td>
+<td>Represents external system interactions.</td>
+</tr>
+<tr>
+<td><code>externalEvent</code></td>
+<td>Represents events from outside the system.</td>
+</tr>
+<tr>
+<td><code>query</code></td>
+<td>Describes query results / projections.</td>
+</tr>
+<tr>
+<td><code>translation</code></td>
+<td>Describes message translation or mapping logic.</td>
+</tr>
+<tr>
+<td><code>view</code></td>
+<td>Describes a view to originate command from.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="value-definition">Value Definition<a class="headerlink" href="#value-definition" title="Permanent link">#</a></h4>
+<p>The value of elements is used to express their specific meaning in the timeline. For example, you might want to express the fact, that
+a particular value of the message is passed to another message or express that a repetitive usage of the value leads to a certain condition.
+The values can be specified by as embedded value (as part of the body) or using external resource referenced in the <code>resource</code> attribute.
+The value is expressed in a value format which can be set in the <code>valueFormat</code> attribute, defaulting to <code>application/json</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>valueFormat</code></td>
+<td><code>xsd:string</code></td>
+<td>MIME type (e.g., application/json as default)</td>
+</tr>
+<tr>
+<td><code>resource</code></td>
+<td><code>xsd:string</code></td>
+<td>Optional path or URL to the schema. If omitted, the <code>value</code> must contain definition as body.</td>
+</tr>
+</tbody>
+</table>
+<p>Example of external value definition:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;command</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;createCustomer_4711&quot;</span><span class="w"> </span><span class="na">typeRef=</span><span class="s">&quot;createCustomer&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;value</span><span class="w"> </span><span class="na">resource=</span><span class="s">&quot;values/create_customer_4711.json&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/command&gt;</span>
+</code></pre></div>
+<p>Example of embedded value definition:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;command</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;createCustomer_4711&quot;</span><span class="w"> </span><span class="na">typeRef=</span><span class="s">&quot;createCustomer&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;value&gt;</span>
+<span class="w">    </span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">      {</span>
+<span class="cp">        &quot;customerId&quot;: 4711,</span>
+<span class="cp">        &quot;customerName&quot;: &quot;Kermit, The Frog&quot;</span>
+<span class="cp">      }    </span>
+<span class="cp">    ]]&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/value&gt;</span>
+<span class="nt">&lt;/command&gt;</span>
+</code></pre></div>
+<h4 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;timeline</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;https://holixon.io/spec/EMN/20241231/MODEL&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;view</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;view24_1&quot;</span><span class="w"> </span><span class="na">typeRef=</span><span class="s">&quot;view24&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;outgoing&gt;</span>v2c_createCustomer_1<span class="nt">&lt;/outgoing&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/view&gt;</span>
+<span class="w">  </span><span class="nt">&lt;command</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;createCustomer_1&quot;</span><span class="w"> </span><span class="na">typeRef=</span><span class="s">&quot;createCustomer&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;</span>
+<span class="w">      </span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">      {</span>
+<span class="cp">        &quot;customerId&quot;: 4711,</span>
+<span class="cp">        &quot;customerName&quot;: &quot;Kermit, The Frog&quot;</span>
+<span class="cp">      }</span>
+<span class="cp">      ]]&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;incoming&gt;</span>v2c_createCustomer_1<span class="nt">&lt;/incoming&gt;</span>
+<span class="w">    </span><span class="nt">&lt;outgoing&gt;</span>c2e_createCustomer_1<span class="nt">&lt;/outgoing&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/command&gt;</span>
+<span class="w">  </span><span class="nt">&lt;event</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;customerCreated_1&quot;</span><span class="w"> </span><span class="na">typeRef=</span><span class="s">&quot;customerCreated&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;</span>
+<span class="w">      </span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">      {</span>
+<span class="cp">        &quot;customerId&quot;: 4711,</span>
+<span class="cp">        &quot;customerName&quot;: &quot;Kermit, The Frog&quot;</span>
+<span class="cp">      }</span>
+<span class="cp">      ]]&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;incoming&gt;</span>c2e_createCustomer_1<span class="nt">&lt;/incoming&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/event&gt;</span>
+<span class="w">  </span><span class="nt">&lt;messageFlow</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;v2c_createCustomer_1&quot;</span><span class="w"> </span><span class="na">typeRef=</span><span class="s">&quot;v2c_createCustomer&quot;</span>
+<span class="w">               </span><span class="na">sourceRef=</span><span class="s">&quot;view24_1&quot;</span><span class="w"> </span><span class="na">targetRef=</span><span class="s">&quot;createCustomer_1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;messageFlow</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;c2e_createCustomer_1&quot;</span><span class="w"> </span><span class="na">typeRef=</span><span class="s">&quot;c2e_createCustomer&quot;</span>
+<span class="w">               </span><span class="na">sourceRef=</span><span class="s">&quot;createCustomer_1&quot;</span><span class="w"> </span><span class="na">targetRef=</span><span class="s">&quot;customerCreated_1&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/timeline&gt;</span>
+</code></pre></div>
+<h3 id="lanes">Lanes<a class="headerlink" href="#lanes" title="Permanent link">#</a></h3>
+<p>Lanes in EMN represent horizontal partitions of the timeline that group related modeling elements.<br />
+They provide structure to the diagram by separating concerns such as triggers, interactions, and concepts/aggregates.</p>
+<h4 id="types-of-lanes">Types of Lanes<a class="headerlink" href="#types-of-lanes" title="Permanent link">#</a></h4>
+<ul>
+<li>
+<p><strong>Trigger Lane</strong><br />
+  Used to represent triggers that initiate parts of the flow, such as external events or user actions.</p>
+</li>
+<li>
+<p><strong>Interaction Lane</strong><br />
+  Contains interactions like commands and queries that describe the communication between users, systems, or aggregates.</p>
+</li>
+<li>
+<p><strong>Aggregate Lane</strong><br />
+  Formerly called <em>concept lane</em>, it holds conceptual groupings like aggregates, entities, or other domain concepts that produce or consume events.</p>
+</li>
+</ul>
+<h4 id="purpose_3">Purpose<a class="headerlink" href="#purpose_3" title="Permanent link">#</a></h4>
+<ul>
+<li>Organize the timeline into meaningful partitions.</li>
+<li>Distinguish between <strong>triggers</strong>, <strong>interactions</strong>, and <strong>aggregates (concepts)</strong>.</li>
+<li>Improve visual clarity by grouping related elements into lanes.</li>
+</ul>
+<h4 id="semantics_3">Semantics<a class="headerlink" href="#semantics_3" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Trigger Lanes</strong>: Represent external inputs or user/system actions that initiate flows. If an element is placed into this lane,
+  it takes the role of the lane. Useful trigger lanes represent any kind of grouping (e.G user/admin/customer for views).</li>
+<li><strong>Interaction Lane</strong>: Captures the flow of interactions, e.g., commands and queries.</li>
+<li><strong>Aggregate Lanes</strong>: Represent aggregates or domain concepts. Placement of events in different aggregate lanes means assign
+  them to different aggregates and define their responsibilities.</li>
+<li>Lanes do not change the semantics of the contained elements but serve as a structural and visual organization mechanism.</li>
+</ul>
+<h4 id="structure_3">Structure<a class="headerlink" href="#structure_3" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;laneSet&gt;</span>
+<span class="w">  </span><span class="nt">&lt;triggerLaneSet&gt;</span>...<span class="nt">&lt;/triggerLaneSet&gt;</span>
+<span class="w">  </span><span class="nt">&lt;interactionLane&gt;</span>...<span class="nt">&lt;/interactionLane&gt;</span>
+<span class="w">  </span><span class="nt">&lt;aggregateLaneSet&gt;</span>...<span class="nt">&lt;/aggregateLaneSet&gt;</span>
+<span class="nt">&lt;/laneSet&gt;</span>
+</code></pre></div>
+<h5 id="contained-elements_3">Contained elements<a class="headerlink" href="#contained-elements_3" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>triggerLaneSet</code></td>
+<td>A lane set for trigger lanes. Every <code>triggerLane</code> may express a trigger role.</td>
+</tr>
+<tr>
+<td><code>interactionLane</code></td>
+<td>A lane for <code>command</code> and <code>query</code> interactions.</td>
+</tr>
+<tr>
+<td><code>aggregateLaneSet</code></td>
+<td>A lane for for aggregate lanes. Every <code>aggregateLane</code> may express a different concept/aggregate.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="attributes-of-lane">Attributes of <code>Lane</code><a class="headerlink" href="#attributes-of-lane" title="Permanent link">#</a></h5>
+<p>Lane represents an abstract concept and has three concrete sub types: <code>TriggerLane</code>, <code>InteractionLane</code> and <code>AggregateLane</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>xsd:ID</code></td>
+<td>Lane id.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>xsd:string</code></td>
+<td>Name of the lane. Especially useful on trigger and aggregate lanes.</td>
+</tr>
+<tr>
+<td><code>flowNodeRef</code></td>
+<td><code>xsd:IDREF</code></td>
+<td>Specifies the IDs of <code>flowElement</code>s included into this lane.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="aggregate-type-definition">Aggregate Type Definition<a class="headerlink" href="#aggregate-type-definition" title="Permanent link">#</a></h4>
+<p>For aggregates, it is possible to define the type of its identity, by specifying the <code>idSchema</code>. <code>idSchema</code> is a <code>schema</code> for the identity
+and can be specified similar to schema of the structural message:</p>
+<p>Example of external schema:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;aggregateLane</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;customer&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Customer&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;idSchema</span><span class="w"> </span><span class="na">resource=</span><span class="s">&quot;schemas/CustomerId.json&quot;</span><span class="w"> </span><span class="na">schemaFormat=</span><span class="s">&quot;application/schema+json&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/aggregateLane&gt;</span>
+</code></pre></div>
+<p>Example of embedded schema:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;aggregateLane</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;customer&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Customer&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;schema</span><span class="w"> </span><span class="na">schemaFormat=</span><span class="s">&quot;application/schema+json&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">    {</span>
+<span class="cp">      &quot;type&quot;: &quot;object&quot;,</span>
+<span class="cp">      &quot;properties&quot;: {</span>
+<span class="cp">        &quot;customerId&quot;: { &quot;type&quot;: &quot;string&quot; },</span>
+<span class="cp">      },</span>
+<span class="cp">      &quot;required&quot;: [&quot;customerId&quot;]</span>
+<span class="cp">    }</span>
+<span class="cp">  ]]&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/schema&gt;</span>
+<span class="nt">&lt;/aggregateLane&gt;</span>
+</code></pre></div>
+<h4 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;laneSet&gt;</span>
+<span class="w">  </span><span class="nt">&lt;triggerLaneSet&gt;</span>
+<span class="w">    </span><span class="nt">&lt;triggerLane</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;triggers_1&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;User Actions&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;flowNodeRef&gt;</span>View24<span class="nt">&lt;/flowNodeRef&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/triggerLane&gt;</span>
+<span class="w">    </span><span class="nt">&lt;triggerLane</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;triggers_2&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Admin Actions&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;flowNodeRef&gt;</span>View25<span class="nt">&lt;/flowNodeRef&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/triggerLane&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/triggerLaneSet&gt;</span>
+<span class="w">  </span><span class="nt">&lt;interactionLane</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;interactions_1&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;flowNodeRef&gt;</span>CreateOrderCommand<span class="nt">&lt;/flowNodeRef&gt;</span>
+<span class="w">    </span><span class="nt">&lt;flowNodeRef&gt;</span>CheckInventoryQuery<span class="nt">&lt;/flowNodeRef&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/interactionLane&gt;</span>
+<span class="w">  </span><span class="nt">&lt;aggregateLaneSet&gt;</span>
+<span class="w">    </span><span class="nt">&lt;aggregateLane</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;order&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Order&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;flowNodeRef&gt;</span>OrderCreatedEvent<span class="nt">&lt;/flowNodeRef&gt;</span>
+<span class="w">      </span><span class="nt">&lt;flowNodeRef&gt;</span>OrderConfirmedEvent<span class="nt">&lt;/flowNodeRef&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/aggregateLane&gt;</span>
+<span class="w">    </span><span class="nt">&lt;aggregateLane</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;inventory&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Inventory&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;flowNodeRef&gt;</span>OrderCreatedEvent<span class="nt">&lt;/flowNodeRef&gt;</span>
+<span class="w">      </span><span class="nt">&lt;flowNodeRef&gt;</span>OrderConfirmedEvent<span class="nt">&lt;/flowNodeRef&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/aggregateLane&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/aggregateLaneSet&gt;</span>
+<span class="nt">&lt;/laneSet&gt;</span>
+</code></pre></div>
+<h3 id="slices_1">Slices<a class="headerlink" href="#slices_1" title="Permanent link">#</a></h3>
+<p>Slices in EMN define vertical groupings of flow elements across the timeline.<br />
+They are used to capture a meaningful unit of progression, often representing a single user interaction, business transaction, or system step.</p>
+<h4 id="purpose_4">Purpose<a class="headerlink" href="#purpose_4" title="Permanent link">#</a></h4>
+<ul>
+<li>Organize flow elements into <strong>coherent vertical cuts</strong> across lanes.</li>
+<li>Represent a <strong>stage or increment</strong> in the modeled process.</li>
+<li>Provide a way to <strong>analyze and discuss</strong> the system step by step.</li>
+</ul>
+<h4 id="structure_4">Structure<a class="headerlink" href="#structure_4" title="Permanent link">#</a></h4>
+<p>The root container for slices is the <strong>sliceSet</strong>.<br />
+It can contain multiple <strong>slice</strong> elements.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;sliceSet&gt;</span>
+<span class="w">  </span><span class="nt">&lt;slice&gt;</span>...<span class="nt">&lt;/slice&gt;</span>
+<span class="w">  </span><span class="nt">&lt;slice&gt;</span>...<span class="nt">&lt;/slice&gt;</span>
+<span class="nt">&lt;/sliceSet&gt;</span>
+</code></pre></div>
+<p>Each slice contains references to flow nodes that belong to this vertical grouping.</p>
+<h4 id="semantics_4">Semantics<a class="headerlink" href="#semantics_4" title="Permanent link">#</a></h4>
+<ul>
+<li>A <strong>slice</strong> represents a logical step or milestone across the timeline.</li>
+<li>It connects related events, commands, and aggregates that occur together in a business scenario.</li>
+<li>Slices are <strong>orthogonal to lanes</strong>: lanes group horizontally by role or concept, slices group vertically by temporal or logical progression.</li>
+<li>Slices provide a mechanism for <strong>narrating the model</strong> step by step.</li>
+</ul>
+<h4 id="attributes-of-slice">Attributes of <code>slice</code><a class="headerlink" href="#attributes-of-slice" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Use</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>xsd:string</td>
+<td>optional</td>
+<td>Descriptive label for the slice</td>
+</tr>
+<tr>
+<td>flowNodeRef</td>
+<td>xsd:IDREF</td>
+<td>optional, repeatable</td>
+<td>References to flow nodes included in this slice</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example_3">Example<a class="headerlink" href="#example_3" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;sliceSet</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Order Flow Slices&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;slice</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;Slice1&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Order Creation&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;flowNodeRef&gt;</span>StartOrderEvent<span class="nt">&lt;/flowNodeRef&gt;</span>
+<span class="w">    </span><span class="nt">&lt;flowNodeRef&gt;</span>CreateOrderCommand<span class="nt">&lt;/flowNodeRef&gt;</span>
+<span class="w">    </span><span class="nt">&lt;flowNodeRef&gt;</span>OrderCreatedEvent<span class="nt">&lt;/flowNodeRef&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/slice&gt;</span>
+<span class="w">  </span><span class="nt">&lt;slice</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;Slice2&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Order Confirmation&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;flowNodeRef&gt;</span>ConfirmOrderCommand<span class="nt">&lt;/flowNodeRef&gt;</span>
+<span class="w">    </span><span class="nt">&lt;flowNodeRef&gt;</span>OrderConfirmedEvent<span class="nt">&lt;/flowNodeRef&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/slice&gt;</span>
+<span class="nt">&lt;/sliceSet&gt;</span>
+</code></pre></div>
+<h3 id="specifications">Specifications<a class="headerlink" href="#specifications" title="Permanent link">#</a></h3>
+<p>The <strong>Specification</strong> section in EMN provides a way to capture behavior in a structured form, inspired by <em>Given-When-Then</em> notation.<br />
+It connects the structural modeling elements (events, commands) with executable specifications that describe expected outcomes.</p>
+<h4 id="purpose_5">Purpose<a class="headerlink" href="#purpose_5" title="Permanent link">#</a></h4>
+<ul>
+<li>Define <strong>scenarios</strong> that describe system behavior in concrete terms.</li>
+<li>Provide a <strong>narrative layer</strong> on top of the timeline, slices, and lanes.</li>
+<li>Support <strong>testable definitions</strong> of domain logic using a familiar pattern.</li>
+</ul>
+<h4 id="structure_5">Structure<a class="headerlink" href="#structure_5" title="Permanent link">#</a></h4>
+<p>The <code>specification</code> is a named container holding a textual narrative and three <code>stage</code>s of a scenario or use case. The <code>stage</code> is
+an abstract type with three subtypes: <code>given</code>, <code>when</code> and <code>then</code>. The stages differ semantically, but have the same structure.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;specification&gt;</span>
+<span class="w">  </span><span class="nt">&lt;given&gt;</span>...<span class="nt">&lt;/given&gt;</span>
+<span class="w">  </span><span class="nt">&lt;when&gt;</span>...<span class="nt">&lt;/when&gt;</span>
+<span class="w">  </span><span class="nt">&lt;then&gt;</span>...<span class="nt">&lt;/then&gt;</span>
+<span class="nt">&lt;/specification&gt;</span>
+</code></pre></div>
+<h4 id="semantics_5">Semantics<a class="headerlink" href="#semantics_5" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>given</strong> sets the context by listing the flow elements that define the starting state. For an event-sourced system this is a series of events.</li>
+<li><strong>when</strong> defines the action that triggers the scenario (e.g., a command or query).</li>
+<li><strong>then</strong> defines the expected events or state changes that must result.</li>
+<li>Specifications may be linked to <strong>slices</strong> to connect behavior with process steps.</li>
+</ul>
+<h4 id="attributes-of-specification">Attributes of <code>specification</code><a class="headerlink" href="#attributes-of-specification" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Use</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>xsd:string</td>
+<td>required</td>
+<td>Unique name of the specification</td>
+</tr>
+<tr>
+<td>scenario</td>
+<td>xsd:string</td>
+<td>optional</td>
+<td>Human-readable description of the scenario</td>
+</tr>
+<tr>
+<td>sliceRef</td>
+<td>xsd:IDREF</td>
+<td>optional</td>
+<td>Reference to the slice this specification belongs to</td>
+</tr>
+</tbody>
+</table>
+<h4 id="attributes-of-given-stage">Attributes of <code>given</code> stage<a class="headerlink" href="#attributes-of-given-stage" title="Permanent link">#</a></h4>
+<p>The Given Stage may provide a name of the state it describes by its contained elements.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Use</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stateName</td>
+<td>xsd:string</td>
+<td>optional</td>
+<td>Name of the state being assumed in the <code>given</code> stage</td>
+</tr>
+</tbody>
+</table>
+<h4 id="contained-elements-of-stage">Contained Elements of <code>stage</code><a class="headerlink" href="#contained-elements-of-stage" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Contained Element</th>
+<th>Cardinality</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>flowElement</td>
+<td>0..n</td>
+<td>Flow elements included in the stage</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example_4">Example<a class="headerlink" href="#example_4" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;specification</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;https://holixon.io/spec/EMN/20241231/MODEL&quot;</span>
+<span class="w">               </span><span class="na">name=</span><span class="s">&quot;Don&#39;t create customer if already exists&quot;</span>
+<span class="w">               </span><span class="na">scenario=</span><span class="s">&quot;If the customer with the same customer id already created, the creation command should be rejected.&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;given</span><span class="w"> </span><span class="na">stateName=</span><span class="s">&quot;Customer Exists&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;event</span><span class="w"> </span><span class="na">typeRef=</span><span class="s">&quot;customer_created&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;value&gt;</span>
+<span class="w">        </span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">        {</span>
+<span class="cp">          &quot;customerId&quot;: 4711,</span>
+<span class="cp">          &quot;customerName&quot;: &quot;Kermit, The Frog&quot;</span>
+<span class="cp">        }</span>
+<span class="cp">        ]]&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/event&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/given&gt;</span>
+<span class="w">  </span><span class="nt">&lt;when&gt;</span>
+<span class="w">    </span><span class="nt">&lt;command</span><span class="w"> </span><span class="na">typeRef=</span><span class="s">&quot;create_customer&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;value&gt;</span>
+<span class="w">        </span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">        {</span>
+<span class="cp">          &quot;customerId&quot;: 4711,</span>
+<span class="cp">          &quot;customerName&quot;: &quot;Kermit, The Frog&quot;</span>
+<span class="cp">        }</span>
+<span class="cp">        ]]&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/command&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/when&gt;</span>
+<span class="w">  </span><span class="nt">&lt;then&gt;</span>
+<span class="w">    </span><span class="nt">&lt;error</span><span class="w"> </span><span class="na">typeRef=</span><span class="s">&quot;duplicate_customer&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;value&gt;</span>
+<span class="w">        </span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">        {</span>
+<span class="cp">            &quot;message&quot;: &quot;Customer with id 4711 already exists&quot;</span>
+<span class="cp">        }</span>
+<span class="cp">        ]]&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/error&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/then&gt;</span>
+<span class="nt">&lt;/specification&gt;</span>
+</code></pre></div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 30, 2025 08:25:06 UTC">September 30, 2025</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 - 2025, BPM Crafters
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://twitter.com/holisticon" target="_blank" rel="noopener" title="Holisticon on Twitter" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top", "toc.integrate"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
