@@ -1,0 +1,115 @@
+# ###############################
+# Main config file for MkDocs.
+# ###############################
+#
+# To run:
+# mkdocs serve
+# ###############################
+
+site_name: Event Modeling Notation
+site_url: https://holixon/emn-moddle/
+site_author: Holisticon AG
+site_description: >-
+  Event Modeling Notation (EMN) is an XML-based language for modeling system behavior through events,
+  commands, and user interactions. It captures event-driven flows in a structured, time-ordered format called a Timeline.
+  EMN introduces concepts like Slices and Concept Lanes to represent system responsibilities and interactions.
+  Diagrams are represented using the OMG Diagram Interchange (DI) standard for tool interoperability.
+  The goal of EMN is to provide a formal, machine-readable format for event modeling, enabling clear
+  communication between technical and business teams.
+copyright: Copyright &copy; 2024 - 2025, BPM Crafters
+
+use_directory_urls: false
+
+# Repository
+repo_name: holixon/emn-moddle
+repo_url: https://github.com/holixon/emn-moddle/
+edit_uri: edit/develop/docs/
+
+markdown_extensions:
+  - attr_list
+  - toc:
+      permalink: "#"
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.details
+  - admonition
+
+theme:
+  name: material
+  features:
+    - navigation.instant # When instant loading is enabled, clicks on all internal links will be intercepted and dispatched via XHR without fully reloading the page
+    - navigation.tabs # add top level nav items into a horizoneal menu
+    - navigation.tabs.sticky # make horizontal menu sticky (insider feature)
+    - navigation.sections
+    - navigation.top # add "navigate to top" page icon on bottom left
+    - toc.integrate # integrate site TOC into the menu on the left
+  logo: assets/img/logo.png
+  icon:
+    repo: fontawesome/brands/github
+  font:
+    text: Roboto
+    code: Roboto Mono
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: default
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+extra_css: [ stylesheets/extra.css ]
+
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      name: Holisticon on Twitter
+      link: https://twitter.com/holisticon
+  version:
+    provider: mike
+
+plugins:
+  - search
+  - mike:
+      # these fields are all optional; the defaults are as below...
+      version_selector: true   # set to false to leave out the version selector
+      css_dir: css                    # the directory to put the version selector's CSS
+      javascript_dir: js            # the directory to put the version selector's JS
+      canonical_version: null  # the version for <link rel="canonical">; `null`
+      # uses the version specified via `mike deploy`
+  - git-revision-date-localized:
+      type: date
+      fallback_to_build_date: true
+#  - multirepo:
+#      cleanup: false
+#      keep_docs_dir: false
+#      nav_repos:
+#        - name: process-engine-api
+#          import_url: https://github.com/bpm-crafters/process-engine-api?edit_uri=/blob/develop/&branch=develop
+#          imports: [ docs/**/*.md, docs/assets/img/* ]
+#        - name: process-engine-worker
+#          import_url: https://github.com/bpm-crafters/process-engine-worker?edit_uri=/blob/develop/&branch=develop
+#          imports: [ docs/**/*.md ]
+#        - name: process-engine-adapters-camunda-7
+#          import_url: https://github.com/bpm-crafters/process-engine-adapters-camunda-7?edit_uri=/blob/develop/&branch=develop
+#          imports: [ docs/**/*.md ]
+#        - name: process-engine-adapters-camunda-8
+#          import_url: https://github.com/bpm-crafters/process-engine-adapters-camunda-8?edit_uri=/blob/develop/&branch=develop
+#          imports: [ docs/**/*.md ]
+
+nav:
+  - Home: index.md
+  - Introduction:
+      - Motivation and Goal: introduction/index.md
+      - Usage and Tools: introduction/usage-and-tools.md
+      - Resources: introduction/resources.md
+  - Reference:
+      - Overview: reference-guide/index.md
+      - Language-Specification: reference-guide/language-specification.md
+      - Patterns: reference-guide/patterns.md
+  - Developers:
+      - Contribution: developer-guide/contribution.md
+      - Project Setup: developer-guide/project-setup.md
