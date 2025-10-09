@@ -2,38 +2,66 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://holixon/emn/snapshot/index.html</loc>
-         <lastmod>2025-09-30</lastmod>
+         <lastmod>2025-10-09</lastmod>
     </url>
     <url>
-         <loc>https://holixon/emn/snapshot/developer-guide/contribution.html</loc>
-         <lastmod>2025-09-30</lastmod>
+         <loc>https://holixon/emn/snapshot/adrs/index.html</loc>
+         <lastmod>2025-10-09</lastmod>
     </url>
     <url>
-         <loc>https://holixon/emn/snapshot/developer-guide/project-setup.html</loc>
-         <lastmod>2025-09-30</lastmod>
+         <loc>https://holixon/emn/snapshot/adrs/0001-use-markdown-any-decision-records.html</loc>
+         <lastmod>2025-10-09</lastmod>
+    </url>
+    <url>
+         <loc>https://holixon/emn/snapshot/adrs/0002-language-first.html</loc>
+         <lastmod>2025-10-09</lastmod>
+    </url>
+    <url>
+         <loc>https://holixon/emn/snapshot/adrs/0003-align-specification-style-with-bpmn.html</loc>
+         <lastmod>2025-10-09</lastmod>
+    </url>
+    <url>
+         <loc>https://holixon/emn/snapshot/adrs/0004-primary-serialization-format.html</loc>
+         <lastmod>2025-10-09</lastmod>
+    </url>
+    <url>
+         <loc>https://holixon/emn/snapshot/adrs/0005-schema-approach-for-message-structures.html</loc>
+         <lastmod>2025-10-09</lastmod>
+    </url>
+    <url>
+         <loc>https://holixon/emn/snapshot/adrs/0006-element-value-specification.html</loc>
+         <lastmod>2025-10-09</lastmod>
+    </url>
+    <url>
+         <loc>https://holixon/emn/snapshot/contributing/project-setup.html</loc>
+         <lastmod>2025-10-09</lastmod>
     </url>
     <url>
          <loc>https://holixon/emn/snapshot/introduction/index.html</loc>
-         <lastmod>2025-09-30</lastmod>
+         <lastmod>2025-10-09</lastmod>
     </url>
     <url>
          <loc>https://holixon/emn/snapshot/introduction/resources.html</loc>
-         <lastmod>2025-09-30</lastmod>
+         <lastmod>2025-10-09</lastmod>
     </url>
     <url>
          <loc>https://holixon/emn/snapshot/introduction/usage-and-tools.html</loc>
-         <lastmod>2025-09-30</lastmod>
+         <lastmod>2025-10-09</lastmod>
     </url>
     <url>
          <loc>https://holixon/emn/snapshot/reference-guide/index.html</loc>
-         <lastmod>2025-09-30</lastmod>
+         <lastmod>2025-10-09</lastmod>
     </url>
     <url>
          <loc>https://holixon/emn/snapshot/reference-guide/language-specification.html</loc>
-         <lastmod>2025-09-30</lastmod>
+         <lastmod>2025-10-09</lastmod>
     </url>
     <url>
          <loc>https://holixon/emn/snapshot/reference-guide/patterns.html</loc>
-         <lastmod>2025-09-30</lastmod>
+         <lastmod>2025-10-09</lastmod>
+    </url>
+    <url>
+         <loc>https://holixon/emn/snapshot/reference-guide/quick-guide.html</loc>
+         <lastmod>2025-10-09</lastmod>
     </url>
 </urlset>

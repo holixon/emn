@@ -12,11 +12,13 @@
         <meta name="author" content="Holisticon AG">
       
       
-        <link rel="canonical" href="https://holixon/emn/snapshot/developer-guide/project-setup.html">
+        <link rel="canonical" href="https://holixon/emn/snapshot/adrs/0004-primary-serialization-format.html">
       
       
-        <link rel="prev" href="contribution.html">
+        <link rel="prev" href="0003-align-specification-style-with-bpmn.html">
       
+      
+        <link rel="next" href="0005-schema-approach-for-message-structures.html">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -24,7 +26,7 @@
     
     
       
-        <title>Project Setup - Event Modeling Notation</title>
+        <title>Primary Serialization Format for EMN Documents - Event Modeling Notation</title>
       
     
     
@@ -52,6 +54,8 @@
     
       <link rel="stylesheet" href="../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../stylesheets/adr.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -78,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#version-control" class="md-skip">
+        <a href="#primary-serialization-format-for-emn-documents" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Project Setup
+              Primary Serialization Format for EMN Documents
             
           </span>
         </div>
@@ -267,7 +271,7 @@
           
   
   
-  Reference
+  Reference Guide
 
         </a>
       </li>
@@ -285,11 +289,31 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="contribution.html" class="md-tabs__link">
+        <a href="index.html" class="md-tabs__link">
           
   
   
-  Developers
+  Architecture Decisions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../contributing/project-setup.html" class="md-tabs__link">
+          
+  
+  
+  Contributing
 
         </a>
       </li>
@@ -444,12 +468,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/usage-and-tools.html" class="md-nav__link">
+      <a href="../introduction/resources.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Usage and Tools
+    Resources
     
   </span>
   
@@ -467,12 +491,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/resources.html" class="md-nav__link">
+      <a href="../introduction/usage-and-tools.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Resources
+    Usage and Tools
     
   </span>
   
@@ -518,7 +542,7 @@
   
   
   <span class="md-ellipsis">
-    Reference
+    Reference Guide
     
   </span>
   
@@ -529,7 +553,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            Reference
+            Reference Guide
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -563,12 +587,35 @@
   
   
     <li class="md-nav__item">
+      <a href="../reference-guide/quick-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../reference-guide/language-specification.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Language-Specification
+    Language Specification
     
   </span>
   
@@ -642,7 +689,7 @@
   
   
   <span class="md-ellipsis">
-    Developers
+    Architecture Decisions
     
   </span>
   
@@ -653,7 +700,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Developers
+            Architecture Decisions
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -664,14 +711,104 @@
   
   
     <li class="md-nav__item">
-      <a href="contribution.html" class="md-nav__link">
+      <a href="index.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Contribution
+    Overview
     
   </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="0001-use-markdown-any-decision-records.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Use Markdown Any Decision Records
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--accepted"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="0002-language-first.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Develop language specification before tooling
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--accepted"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="0003-align-specification-style-with-bpmn.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Align Specification Style with BPMN
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--accepted"></span>
+  
+
   
 
       </a>
@@ -693,28 +830,44 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
   
   <span class="md-ellipsis">
-    Project Setup
+    Primary Serialization Format for EMN Documents
     
   </span>
+  
+    
+  
+  
+    <span class="md-status md-status--accepted"></span>
+  
+
   
 
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="project-setup.html" class="md-nav__link md-nav__link--active">
+      <a href="0004-primary-serialization-format.html" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
-    Project Setup
+    Primary Serialization Format for EMN Documents
     
   </span>
+  
+    
+  
+  
+    <span class="md-status md-status--accepted"></span>
+  
+
   
 
       </a>
@@ -725,6 +878,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -733,37 +888,64 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#version-control" class="md-nav__link">
+  <a href="#context-and-problem-statement" class="md-nav__link">
     <span class="md-ellipsis">
-      Version control
+      Context and Problem Statement
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#build-documentation" class="md-nav__link">
+  <a href="#considered-options" class="md-nav__link">
     <span class="md-ellipsis">
-      Build Documentation
+      Considered Options
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#continuous-integration" class="md-nav__link">
+  <a href="#decision-outcome" class="md-nav__link">
     <span class="md-ellipsis">
-      Continuous Integration
+      Decision Outcome
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Continuous Integration">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison-of-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparison of Options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Comparison of Options">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#trigger-new-release" class="md-nav__link">
+  <a href="#extensibility" class="md-nav__link">
     <span class="md-ellipsis">
-      Trigger new release
+      Extensibility
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adoption-and-tool-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adoption and Tool Support
     </span>
   </a>
   
@@ -774,10 +956,170 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#alignment-with-bpmn-2x" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alignment with BPMN 2.x
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation Considerations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benefits-of-xml-for-emn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits of XML for EMN
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="0005-schema-approach-for-message-structures.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schema Approach for Message Structures
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--accepted"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="0006-element-value-specification.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Element Value Specification Approach
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--accepted"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Contributing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/project-setup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Project Setup
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -802,6 +1144,38 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
+
+
+<div class="adr-meta md-typeset">
+  <dl>
+    
+    <dt>Status</dt>
+    <dd>
+      
+      
+      <span style="color: #2e7d32; font-weight: 600;">✅ Accepted</span>
+      
+    </dd>
+    
+
+    
+    <dt>Date</dt>
+    <dd>2025-01-01</dd>
+    
+
+    
+    <dt>Deciders</dt>
+    <dd>Simon Zambrovski, Christian Thiel</dd>
+    
+
+    
+
+    
+  </dl>
+</div>
+
+
+
                   
 
 
@@ -809,42 +1183,154 @@
   
 
 
-  <h1>Project Setup</h1>
-
-<p>If you are interested in developing and building the project please follow the following instruction.</p>
-<h2 id="version-control">Version control<a class="headerlink" href="#version-control" title="Permanent link">#</a></h2>
-<p>To get sources of the project, please execute:</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/holixon/emn.git
-<span class="nb">cd</span><span class="w"> </span>emn
-</code></pre></div>
-<p>We are using gitflow in our git SCM. That means that you should start from <code>develop</code> branch,
-create a <code>feature/&lt;name&gt;</code> out of it and once it is completed create a pull request containing
-it. Please squash your commits before submitting and use semantic commit messages, if possible.</p>
-<h2 id="build-documentation">Build Documentation<a class="headerlink" href="#build-documentation" title="Permanent link">#</a></h2>
-<p>We are using MkDocs for generation of a static site documentation and rely on Markdown as much as possible.
-MkDocs is written in Python 3 and needs to be installed on your machine. For the installation please run the following
-command from your command line:</p>
-<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
-<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
-python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>./docs/requirements.txt
-</code></pre></div>
-<p>For creation of documentation, please run:</p>
-<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>build
-</code></pre></div>
-<p>The docs are generated into <code>site</code> directory.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you want to develop your docs in 'live' mode, run <code>mkdocs serve</code> and access the <a href="http://localhost:8000/">http://localhost:8000/</a> from your browser.</p>
-</div>
-<h2 id="continuous-integration">Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permanent link">#</a></h2>
-<p>GitHub Actions is building all branches on commit hook. </p>
-<h3 id="trigger-new-release">Trigger new release<a class="headerlink" href="#trigger-new-release" title="Permanent link">#</a></h3>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This operation requires special permissions.</p>
-</div>
-<p>We rely on GitHub Action to create a new release. Just publish a new release in GitHub, and a special workflow will publish 
-a new release in GitHub Package Repository.</p>
+<h1 id="primary-serialization-format-for-emn-documents">Primary Serialization Format for EMN Documents<a class="headerlink" href="#primary-serialization-format-for-emn-documents" title="Permanent link">#</a></h1>
+<h2 id="context-and-problem-statement">Context and Problem Statement<a class="headerlink" href="#context-and-problem-statement" title="Permanent link">#</a></h2>
+<p>Event Modeling Notation (EMN) requires a standardized serialization format for storing and exchanging EMN documents. This format will serve as the foundation for tool interoperability, model persistence, and exchange between different EMN tools and platforms.</p>
+<p>The choice of serialization format impacts several critical aspects of the EMN ecosystem:
+- How easily EMN documents can be extended with vendor-specific elements
+- How effectively EMN documents can be validated against schemas
+- How widely the format will be adopted and supported by tools
+- How easily developers can work with the format</p>
+<h2 id="considered-options">Considered Options<a class="headerlink" href="#considered-options" title="Permanent link">#</a></h2>
+<ul>
+<li>JSON (JavaScript Object Notation)</li>
+<li>YAML (YAML Ain't Markup Language)</li>
+<li>XML (Extensible Markup Language)</li>
+</ul>
+<h2 id="decision-outcome">Decision Outcome<a class="headerlink" href="#decision-outcome" title="Permanent link">#</a></h2>
+<p>Chosen option: "XML (Extensible Markup Language)", because:</p>
+<ul>
+<li>XML provides the strongest support for extensibility through namespaces, which allows collision-free addition of vendor-specific elements</li>
+<li>XML has mature validation capabilities through XML Schema (XSD), Schematron, and other technologies</li>
+<li>XML is already the serialization format used by BPMN 2.x, which aligns with our decision to follow BPMN's specification style (see <a href="0003-align-specification-style-with-bpmn.html">ADR-0003</a>)</li>
+<li>XML's mature tooling ecosystem in enterprise environments ensures broad compatibility with existing systems</li>
+<li>XML's strict parsing rules help ensure document consistency across different implementations</li>
+</ul>
+<h2 id="comparison-of-options">Comparison of Options<a class="headerlink" href="#comparison-of-options" title="Permanent link">#</a></h2>
+<h3 id="extensibility">Extensibility<a class="headerlink" href="#extensibility" title="Permanent link">#</a></h3>
+<ol>
+<li><strong>XML</strong>:</li>
+<li>Provides namespaces that allow for collision-free extension of documents</li>
+<li>Supports mixed content models where text and elements can be intermixed</li>
+<li>Allows for vendor-specific extensions that won't conflict with core elements</li>
+<li>Enables clear separation between standard EMN elements and custom extensions</li>
+<li>
+<p>Supports processing instructions and other extension mechanisms</p>
+</li>
+<li>
+<p><strong>JSON</strong>:</p>
+</li>
+<li>Lacks native namespace support, making collision-free extensions more difficult</li>
+<li>Extensions typically rely on naming conventions (e.g., prefixes) which are not enforced</li>
+<li>Requires custom extension patterns that may not be consistently implemented</li>
+<li>
+<p>More compact but less expressive for complex hierarchical structures</p>
+</li>
+<li>
+<p><strong>YAML</strong>:</p>
+</li>
+<li>Similar extensibility limitations as JSON</li>
+<li>Offers tags for type information but lacks a standardized namespace mechanism</li>
+<li>More human-readable but shares JSON's extension challenges</li>
+<li>Anchor and alias features can create more complex references but don't solve the namespace issue</li>
+</ol>
+<h3 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">#</a></h3>
+<ol>
+<li><strong>XML</strong>:</li>
+<li>Robust validation through XML Schema (XSD) with strong typing and constraints</li>
+<li>Additional validation through Schematron for complex business rules</li>
+<li>Validation can be applied even when extensions are present</li>
+<li>Well-established validation patterns from BPMN and other XML-based standards</li>
+<li>
+<p>Validation errors provide precise location information</p>
+</li>
+<li>
+<p><strong>JSON</strong>:</p>
+</li>
+<li>JSON Schema provides validation but is less mature than XML Schema</li>
+<li>Validation tooling is improving but still not as comprehensive as XML</li>
+<li>Less capable of validating documents with extensions</li>
+<li>
+<p>Simpler validation model that may not capture all EMN constraints</p>
+</li>
+<li>
+<p><strong>YAML</strong>:</p>
+</li>
+<li>Can use JSON Schema for validation with some adaptations</li>
+<li>Validation is complicated by YAML's more complex features (anchors, aliases)</li>
+<li>Less standardized validation approach compared to XML</li>
+<li>Fewer enterprise-grade validation tools</li>
+</ol>
+<h3 id="adoption-and-tool-support">Adoption and Tool Support<a class="headerlink" href="#adoption-and-tool-support" title="Permanent link">#</a></h3>
+<ol>
+<li><strong>XML</strong>:</li>
+<li>Widespread enterprise adoption and mature tooling</li>
+<li>Strong support in all major programming languages</li>
+<li>Established patterns for model interchange from BPMN, UML, and other standards</li>
+<li>Consistent parsing behavior across implementations</li>
+<li>
+<p>More verbose but well-understood by enterprise developers</p>
+</li>
+<li>
+<p><strong>JSON</strong>:</p>
+</li>
+<li>Excellent support in web and JavaScript environments</li>
+<li>Simpler parsing model with broad language support</li>
+<li>More compact representation</li>
+<li>Popular in REST APIs and modern web applications</li>
+<li>
+<p>Less established for complex modeling languages</p>
+</li>
+<li>
+<p><strong>YAML</strong>:</p>
+</li>
+<li>Good human readability for configuration files</li>
+<li>Growing adoption in configuration management</li>
+<li>Inconsistent parsing across implementations</li>
+<li>Complex specification with potential security concerns</li>
+<li>Less suitable for interchange formats requiring strict consistency</li>
+</ol>
+<h2 id="alignment-with-bpmn-2x">Alignment with BPMN 2.x<a class="headerlink" href="#alignment-with-bpmn-2x" title="Permanent link">#</a></h2>
+<p>As established in <a href="0003-align-specification-style-with-bpmn.html">ADR-0003</a>, EMN is aligning its specification style with BPMN 2.x. BPMN 2.x uses XML as its 
+serialization format, with a clear separation between:</p>
+<ol>
+<li>The semantic model (what elements mean)</li>
+<li>The diagram interchange (how elements are visualized)</li>
+</ol>
+<p>By adopting XML as our primary serialization format, we maintain consistency with this approach and can leverage established patterns from BPMN 2.x, including:</p>
+<ul>
+<li>Namespace management for extensions</li>
+<li>Separation of semantic and visual concerns</li>
+<li>Schema validation approaches</li>
+<li>Tool interoperability mechanisms</li>
+</ul>
+<h2 id="implementation-considerations">Implementation Considerations<a class="headerlink" href="#implementation-considerations" title="Permanent link">#</a></h2>
+<p>While XML will be the primary serialization format for EMN documents, tools may provide alternative formats for specific use cases:</p>
+<ul>
+<li>JSON representations may be useful for web-based EMN editors</li>
+<li>YAML might be appropriate for human-editable configuration aspects</li>
+<li>Custom binary formats might be developed for performance-critical applications</li>
+</ul>
+<p>However, XML will remain the canonical interchange format for EMN documents, ensuring consistent interpretation across the EMN ecosystem.</p>
+<h2 id="benefits-of-xml-for-emn">Benefits of XML for EMN<a class="headerlink" href="#benefits-of-xml-for-emn" title="Permanent link">#</a></h2>
+<ol>
+<li>
+<p><strong>Standardized Extension Mechanism</strong>: XML namespaces provide a clean, collision-free way to extend EMN documents with vendor-specific elements.</p>
+</li>
+<li>
+<p><strong>Robust Validation</strong>: XML Schema and related technologies enable comprehensive validation of EMN documents, ensuring consistency and correctness.</p>
+</li>
+<li>
+<p><strong>Enterprise Compatibility</strong>: XML's widespread adoption in enterprise environments ensures EMN can integrate with existing systems and tools.</p>
+</li>
+<li>
+<p><strong>Alignment with BPMN</strong>: Using XML maintains consistency with BPMN 2.x, leveraging established patterns and reducing the learning curve.</p>
+</li>
+<li>
+<p><strong>Future-Proofing</strong>: XML's mature specification and stable implementation across platforms provides a solid foundation for long-term EMN development.</p>
+</li>
+</ol>
+<p>By selecting XML as the primary serialization format for EMN documents, we establish a foundation that balances extensibility, validation capabilities, and industry adoption, while maintaining alignment with our decision to follow BPMN's specification approach.</p>
 
 
 
@@ -865,7 +1351,7 @@ a new release in GitHub Package Repository.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 30, 2025 08:56:54 UTC">September 30, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 9, 2025 10:47:59 UTC">October 9, 2025</span>
   </span>
 
     
@@ -879,6 +1365,7 @@ a new release in GitHub Package Repository.</p>
 
 
                 
+
               </article>
             </div>
           
@@ -908,19 +1395,6 @@ a new release in GitHub Package Repository.</p>
     Made with
     <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
       Material for MkDocs
-    </a>
-  
-</div>
-      
-        
-<div class="md-social">
-  
-    
-    
-    
-    
-    <a href="https://twitter.com/holisticon" target="_blank" rel="noopener" title="Holisticon on Twitter" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
     </a>
   
 </div>

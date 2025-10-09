@@ -1,0 +1,23 @@
+.adr-meta md-typeset {
+  margin-bottom: 4.5em;
+  padding: 1em;
+  border-left: 4px solid var(--md-primary-fg-color);
+  background-color: var(--md-default-bg-color);
+  border-radius: .3em;
+}
+
+.adr-meta dl {
+  display: grid;
+  grid-template-columns: max-content auto;
+  gap: .3em .8em;
+  margin: 0;
+}
+
+.adr-meta dt {
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.adr-meta dd {
+  margin: 0;
+}
