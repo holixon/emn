@@ -1,0 +1,7 @@
+title: Architecture Decisions
+sort:
+  direction: asc
+append_unmatched: true
+
+nav:
+  - index.md

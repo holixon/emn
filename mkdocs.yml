@@ -64,56 +64,32 @@ theme:
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
+  custom_dir: overrides
 
-extra_css: [ stylesheets/extra.css ]
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/adr.css
 
 extra:
   social:
-    - icon: fontawesome/brands/twitter
-      name: Holisticon on Twitter
-      link: https://twitter.com/holisticon
+  #    - icon: fontawesome/brands/twitter
+  #      name: Holisticon on Twitter
+  #      link: https://twitter.com/holisticon
   version:
     provider: mike
 
+hooks:
+  - hooks/adrs.py
+
 plugins:
   - search
+  - awesome-nav # must be before macros
   - mike:
-      # these fields are all optional; the defaults are as below...
-      version_selector: true   # set to false to leave out the version selector
+      version_selector: true          # set to false, in order to leave out the version selector
       css_dir: css                    # the directory to put the version selector's CSS
-      javascript_dir: js            # the directory to put the version selector's JS
-      canonical_version: null  # the version for <link rel="canonical">; `null`
+      javascript_dir: js              # the directory to put the version selector's JS
+      canonical_version: null         # the version for <link rel="canonical">; `null`
       # uses the version specified via `mike deploy`
   - git-revision-date-localized:
       type: date
       fallback_to_build_date: true
-#  - multirepo:
-#      cleanup: false
-#      keep_docs_dir: false
-#      nav_repos:
-#        - name: process-engine-api
-#          import_url: https://github.com/bpm-crafters/process-engine-api?edit_uri=/blob/develop/&branch=develop
-#          imports: [ docs/**/*.md, docs/assets/img/* ]
-#        - name: process-engine-worker
-#          import_url: https://github.com/bpm-crafters/process-engine-worker?edit_uri=/blob/develop/&branch=develop
-#          imports: [ docs/**/*.md ]
-#        - name: process-engine-adapters-camunda-7
-#          import_url: https://github.com/bpm-crafters/process-engine-adapters-camunda-7?edit_uri=/blob/develop/&branch=develop
-#          imports: [ docs/**/*.md ]
-#        - name: process-engine-adapters-camunda-8
-#          import_url: https://github.com/bpm-crafters/process-engine-adapters-camunda-8?edit_uri=/blob/develop/&branch=develop
-#          imports: [ docs/**/*.md ]
-
-nav:
-  - Home: index.md
-  - Introduction:
-      - Motivation and Goal: introduction/index.md
-      - Usage and Tools: introduction/usage-and-tools.md
-      - Resources: introduction/resources.md
-  - Reference:
-      - Overview: reference-guide/index.md
-      - Language-Specification: reference-guide/language-specification.md
-      - Patterns: reference-guide/patterns.md
-  - Developers:
-      - Contribution: developer-guide/contribution.md
-      - Project Setup: developer-guide/project-setup.md

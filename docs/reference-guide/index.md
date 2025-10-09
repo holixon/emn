@@ -1,7 +1,15 @@
 ---
-title: Reference Guide
+title: Overview
 ---
 <div class="grid cards" markdown>
+
+-   :material-table-of-contents:{ .lg .middle } __Quick Guide__
+
+    ---
+
+    Read the quick guide to explore the capabilities of event modeling.
+
+    [:octicons-arrow-right-24: Quick Guide](quick-guide.md)
 
 -   :material-table-of-contents:{ .lg .middle } __Language Specification__
 
