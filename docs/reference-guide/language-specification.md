@@ -11,14 +11,11 @@ it describes an iterative format of modeling and enrichment of a visual diagram,
 [https://eventmodeling.org](https://eventmodeling.org).
 
 The main diagram of Event Modeling is a timeline, showing the flow of different messages through the system and ordering them into a casual and temporal flow.
-Event
-modeling focus on the method description (the seven steps) but does not provide any formal details for the semantic meaning and exact syntax of the used
+Event modeling focus on the method description (the seven steps) but does not provide any formal details for the semantic meaning and exact syntax of the used
 elements.
 
 **Event modeling notation** or **EMN** for short introduces a language specification for Event Modeling. This specification aims to fill this gap and provide
-both:
-the exact specification of the elements including their semantics and visualisation and a syntax for storage
-of the required information.
+both: the exact specification of the elements including their semantics and visualisation and a syntax for storage of the required information.
 
 ### EMN Modeling Elements
 
@@ -227,7 +224,7 @@ By separating types from instances, EMN enables reuse, consistency, and clear se
 </types>
 ```
 
-##### Contained Elements 
+##### Contained Elements
 
 | Element           | Description                                      |
 |-------------------|--------------------------------------------------|

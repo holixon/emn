@@ -4,3 +4,7 @@ mkdocs-material
 mike
 mkdocs-git-revision-date-localized-plugin
 mkdocs-multirepo-plugin
+mkdocs-macros-plugin
+# mkdocs-macros-adr-summary
+mkdocs-awesome-nav
+mkdocs-simple-hooks

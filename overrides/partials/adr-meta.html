@@ -1,0 +1,43 @@
+{% if "adrs/" in page.url %}
+<div class="adr-meta md-typeset">
+  <dl>
+    {% if page.meta.status %}
+    <dt>Status</dt>
+    <dd>
+      {% set status = page.meta.status|lower %}
+      {% if "accepted" in status %}
+      <span style="color: #2e7d32; font-weight: 600;">✅ Accepted</span>
+      {% elif "rejected" in status %}
+      <span style="color: #c62828; font-weight: 600;">❌ Rejected</span>
+      {% elif "proposed" in status %}
+      <span style="color: #f9a825; font-weight: 600;">📝 Proposed</span>
+      {% elif "deprecated" in status %}
+      <span style="color: #6a1b9a; font-weight: 600;">⚠️ Deprecated</span>
+      {% else %}
+      {{ page.meta.status }}
+      {% endif %}
+    </dd>
+    {% endif %}
+
+    {% if page.meta.date %}
+    <dt>Date</dt>
+    <dd>{{ page.meta.date }}</dd>
+    {% endif %}
+
+    {% if page.meta.deciders %}
+    <dt>Deciders</dt>
+    <dd>{{ page.meta.deciders }}</dd>
+    {% endif %}
+
+    {% if page.meta.consulted %}
+    <dt>Consulted</dt>
+    <dd>{{ page.meta.consulted }}</dd>
+    {% endif %}
+
+    {% if page.meta.informed %}
+    <dt>Informed</dt>
+    <dd>{{ page.meta.informed }}</dd>
+    {% endif %}
+  </dl>
+</div>
+{% endif %}
