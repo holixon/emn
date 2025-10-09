@@ -1,5 +1,5 @@
 # Default ignored files
 .idea/
 site/
-
+hooks/__pycache__/
 
