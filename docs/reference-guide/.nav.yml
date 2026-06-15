@@ -3,4 +3,5 @@ nav:
   - index.md
   - quick-guide.md
   - language-specification.md
+  - language-extensions.md
   - patterns.md
