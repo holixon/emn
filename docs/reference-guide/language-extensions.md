@@ -13,7 +13,7 @@ Tools that do not support a specific extension may preserve the extension data w
 The information completeness check extension documents known and accepted gaps in the information passed along an information flow.
 It is useful when validating whether the target of a flow receives all required information from the source, while still allowing
 modelers to mark selected properties as intentionally ignored.
-The check is only valid for `emn:informationFlowType` elements.
+The check is valid for any `emn:FlowElementType`, including `emn:informationFlowType` and concrete flow node type elements.
 
 #### Namespace
 
@@ -34,6 +34,7 @@ xsi:schemaLocation="https://holixon.io/spec/EMN/20241231/MODEL EMN.xsd
 
 The extension root element is `emnic:informationCompleteness`. It can contain an optional
 `emnic:ignoredProperties` element with zero or more `emnic:ignoredProperty` entries.
+The following example shows the extension on an `emn:informationFlowType`.
 
 ```xml
 
@@ -54,10 +55,10 @@ The extension root element is `emnic:informationCompleteness`. It can contain an
 
 #### Semantics
 
-- `emnic:informationCompleteness` defines completeness-check metadata for one information flow type.
+- `emnic:informationCompleteness` defines completeness-check metadata for one EMN flow element type.
 - `emnic:ignoredProperties` groups properties that are excluded from the completeness check.
 - `emnic:ignoredProperty` identifies one ignored property by name and may explain the reason in `comment`.
-- The extension is only valid inside `emn:extensionElements` on `emn:informationFlowType`.
+- The extension is only valid inside `emn:extensionElements` on elements derived from `emn:FlowElementType`.
 
 #### Attributes of `emnic:ignoredProperty`
 
