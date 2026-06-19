@@ -19,6 +19,14 @@ title: Overview
 
     [:octicons-arrow-right-24: Language Specification](language-specification.md)
 
+-   :material-puzzle:{ .lg .middle } __Language Extensions__
+
+    ---
+
+    Read about optional EMN extension schemas and their semantics.
+
+    [:octicons-arrow-right-24: Language Extensions](language-extensions.md)
+
 -   :material-lock-pattern:{ .lg .middle } __Patterns__
 
     ---
